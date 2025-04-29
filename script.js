@@ -1,4 +1,6 @@
 function createGrid(number) {
+    if (number <= 100) {
+    document.querySelectorAll(".grid").forEach(el => el.remove()); // remove the previous grid
     const container = document.createElement("div");
     container.style.display = "flex";
     container.style.flexWrap = "wrap"; // allows wrapping to new lines
@@ -6,42 +8,65 @@ function createGrid(number) {
 
     for (let i = 0; i < number * number; i++) {
         const square = document.createElement("div");
+        square.className = "grid";
         square.style.backgroundColor = "pink";
         square.style.width = "50px";
         square.style.height = "50px";
         container.appendChild(square);
     }
 
-    document.body.appendChild(container);
+    btncontainer.appendChild(container);
+}
+
+else {
+    document.querySelectorAll(".grid").forEach(el => el.remove()); // remove the previous grid
+    alert("Value <= 100 please");
+
+}
+
 }
 
 //create button and append it before the grid and make it sit in the middle of a seperate div above.
-const numberButton = document.createE
+const numberButton = document.createElement("button");
+const btncontainer = document.createElement("div"); // div for button to reside in
+numberButton.textContent = "Number of Cells";
+document.body.appendChild(btncontainer);
+btncontainer.appendChild(numberButton);
 
-//to do use media query so it fits on every screen and the squares stay square!!
+// make button do something now
+
+const btn = document.querySelector("button");
+
+btn.addEventListener("click", () => {
+    // make a popup appear and ask for 
+    createGrid(prompt("Enter grid size"));
+    listenGrid();
 
 
-
-createGrid(prompt("Number of Squares per side?"));
-
-const divs = document.querySelectorAll("div");
-
-// we use the .forEach method to iterate through each button
-divs.forEach((div) => {
-  // and for each one we add a 'click' listener
-  div.addEventListener("mouseover", () => {
-    div.style.backgroundColor = "red";
-    
-  });
 });
 
 
 
-// add one for mouse 
-// we use the .forEach method to iterate through each button
-divs.forEach((div) => {
-    // and for each one we add a 'click' listener
-    div.addEventListener("mouseleave", () => {
-      div.style.backgroundColor = "pink";
-    });
-  });
+//to do use media query so it fits on every screen and the squares stay square!!
+
+function listenGrid() {
+
+    const divs = document.querySelectorAll(".grid");
+
+    // we use the .forEach method to iterate through each button
+    divs.forEach((div) => {
+        // and for each one we add a 'click' listener
+        div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = "red";
+            div.addEventListener("mouseleave", () => {
+                div.style.backgroundColor = "pink";
+
+            });
+        });
+
+
+         });
+
+
+
+    }
